@@ -18,7 +18,6 @@ endif()
 
 target_include_directories(flux INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-#set(CMAKE_CXX_FLAGS_DEBUG "-Og ${CMAKE_CXX_FLAGS_DEBUG}")
 
 if (MSVC)
     target_compile_options(flux INTERFACE /permissive-)
@@ -28,7 +27,7 @@ set(CMAKE_CXX_EXTENSIONS Off)
 
 #option(FLUX_BUILD_EXAMPLES "Build libflux examples" On)
 option(FLUX_BUILD_TESTS "Build libflux tests" On)
-
+option(FLUX_BUILD_TOOLS "Build single-header generator tool" Off)
 
 #if (${FLUX_BUILD_EXAMPLES})
 #    add_subdirectory(example)
@@ -37,4 +36,8 @@ option(FLUX_BUILD_TESTS "Build libflux tests" On)
 if (${FLUX_BUILD_TESTS})
     enable_testing()
     add_subdirectory(test)
+endif()
+
+if (${FLUX_BUILD_TOOLS})
+    add_subdirectory(tools)
 endif()
